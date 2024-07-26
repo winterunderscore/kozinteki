@@ -1,3 +1,3 @@
 # kozinteki 個人的
 
-pocket bot made for my needs
+personal user-install bot made for my needs
