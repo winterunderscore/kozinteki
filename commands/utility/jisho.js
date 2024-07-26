@@ -28,7 +28,10 @@ module.exports = {
 			const currentResult = json.data[0];
 
 			const wordNReading = (currentResult.japanese
-				.reduce((accumulator, currentValue) => accumulator + `${currentValue.word} \(${currentValue.reading}\), `, ''))
+				.reduce((accumulator, currentValue) => accumulator + 
+					(currentValue.word ? currentValue.word + ' (' : '') 
+					+ currentValue.reading 
+					+ (currentValue.word ? ')' : '') + ', ', ''))
 				.slice(0, -2); //trim remaining ', '
 
 			let formattedSenses = '';
@@ -46,15 +49,12 @@ module.exports = {
 						.reduce((accumulator, currentValue) => accumulator + currentValue + ', ', '');
 				}
 				if (senses[sense].info.length >= 1) {
-					info = info +
-						+ senses[sense].info
+					info = info + senses[sense].info
 						.reduce((accumulator, currentValue) => accumulator + currentValue + ', ', '')
 						.slice(0, -2);
 				} else if (senses[sense].parts_of_speech.length >= 1) {
 					info = info.slice(0, -2);
 				}
-
-				console.log(senses[sense]);
 
 				formattedSenses = formattedSenses +
 					`${sense + 1}. ${englishDefinitions}${info.length >= 1 ? ' *[' + info +']*' : '' } \n`
