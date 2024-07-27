@@ -38,23 +38,8 @@ module.exports = {
 
 			const senses = currentResult.senses;
 			for (sense in senses) {
-				const englishDefinitions = (senses[sense].english_definitions
-					.reduce((accumulator, currentValue) => accumulator + currentValue + ', ', ''))
-					.slice(0, -2);
-				let info = '';
-
-				if (senses[sense].parts_of_speech.length >= 1) {
-					info = info +
-						senses[sense].parts_of_speech
-						.reduce((accumulator, currentValue) => accumulator + currentValue + ', ', '');
-				}
-				if (senses[sense].info.length >= 1) {
-					info = info + senses[sense].info
-						.reduce((accumulator, currentValue) => accumulator + currentValue + ', ', '')
-						.slice(0, -2);
-				} else if (senses[sense].parts_of_speech.length >= 1) {
-					info = info.slice(0, -2);
-				}
+				const englishDefinitions = senses[sense].english_definitions.join(', ');
+				const info = senses[sense].parts_of_speech.concat(senses[sense].info).join(', ');
 
 				formattedSenses = formattedSenses +
 					`${sense + 1}. ${englishDefinitions}${info.length >= 1 ? ' *[' + info +']*' : '' } \n`
