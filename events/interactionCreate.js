@@ -4,7 +4,7 @@ module.exports = {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
 		if (!interaction.isChatInputCommand()) return;
-		console.log(`[INFO] [INTERACTION]: interaction created ${interaction.commandName} by ${interaction.user.username}`);
+		console.log(`[INFO] [INTERACTION]: interaction ${interaction.commandName} created by ${interaction.user.username}`);
 
 		const command = interaction.client.commands.get(interaction.commandName);
 
@@ -18,7 +18,7 @@ module.exports = {
 		} catch (error) {
 			console.error(`[ERROR] [INTERACTION] ${error}`);
 			if (interaction.replied || interaction.deffered) {
-				await interaction.followUp({ content: 'there was an error while executing this command! sorry!!!', ephemeral: true });
+				await interaction.editReply({ content: 'there was an error while executing this command! sorry!!!', ephemeral: true });
 			} else {
 				await interaction.reply({ content: 'there was an error while executing this command! sorry!!!', ephemeral: true });
 			}

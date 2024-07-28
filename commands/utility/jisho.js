@@ -10,10 +10,10 @@ module.exports = {
 				.setRequired(true))
 		.addBooleanOption(option =>
 			option.setName('ephemeral')
-				.setDescription('if you want it to be ephemeral')),
+				.setDescription('if you want it to be ephemeral.')),
 	async execute(interaction) {
 		const query = interaction.options.getString('query');
-		const ephemeral = interaction.options.getBoolean('ephemeral');
+		const ephemeral = interaction.options.getBoolean('ephemeral') ?? false;
 
 		await interaction.deferReply({ ephemeral: ephemeral })
 		try {
