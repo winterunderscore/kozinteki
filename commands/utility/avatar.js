@@ -10,11 +10,14 @@ module.exports = {
 				.setRequired(true)),
 	async execute(interaction) {
 		const user = interaction.options.getUser('user');
+		const avatarUrl = user.displayAvatarURL({ extension: ImageFormat.PNG, size: 2048 })
 		const embed = {
+			color: user.accentColor,
 			image: {
-				url: user.displayAvatarURL({ extension: ImageFormat.PNG, size: 2048 }),
+				url: avatarUrl,
 			},
 			title: `avatar of ${user.username}:`,
+			url: avatarUrl
 		}
 		return interaction.reply({ embeds: [embed] });
 	},
