@@ -48,7 +48,7 @@ module.exports = {
 			formattedSenses = formattedSenses.slice(0, -2);
 
 			const embed = new EmbedBuilder()
-				.setColor(0x9900FF)
+				.setColor(0xed6856)
 				.setTitle(`${query}`)
 				.addFields(
 					{ name: wordNReading, value: formattedSenses }
